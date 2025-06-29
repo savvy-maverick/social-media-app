@@ -67,10 +67,12 @@ export const useUserStore = defineStore({
             this.user.id = user.id
             this.user.name = user.name
             this.user.email = user.email
+            this.user.avatar = user.avatar
 
             localStorage.setItem('user.id', this.user.id)
             localStorage.setItem('user.name', this.user.name)
             localStorage.setItem('user.email', this.user.email)
+           
 
             console.log('User', this.user)
 

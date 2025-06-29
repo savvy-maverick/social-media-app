@@ -50,14 +50,17 @@
     import axios from 'axios'
 
     import { useUserStore } from '@/stores/user'
+    
 
 
     export default {
         setup() {
             const userStore = useUserStore()
+            
 
             return {
-                userStore
+                userStore,
+                
             }
         },
         data() {
@@ -92,8 +95,12 @@
                         })
                         .catch(error => {
                             console.log('error', error)
+
+                            this.errors.push('The email or password is incorrect! or your account is not activated!')
                         })
-                    
+                }
+
+                if (this.errors.length === 0) {    
                     await axios
                         .get('/api/me/')
                         .then(response => {
@@ -105,6 +112,7 @@
                             console.log('error', error)
                         })
                 }
+            
 
             }
         }

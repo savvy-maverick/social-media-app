@@ -25,6 +25,12 @@ class PostAttachment(models.Model):
     image = models.ImageField(upload_to='post_attachments')
     created_by = models.ForeignKey(User, related_name='post_attachments', on_delete=models.CASCADE)
 
+    def get_image(self):
+        if self.image:
+            return 'http://127.0.0.1:8000' + self.image.url
+        else:
+            return ''
+
 
 
 class Post(models.Model):
@@ -47,3 +53,10 @@ class Post(models.Model):
 
     def created_at_formatted(self):
         return timesince(self.created_at)
+    
+
+    
+
+class Trend(models.Model):
+    hashtag = models.CharField(max_length=255, default='')
+    occurences = models.IntegerField()

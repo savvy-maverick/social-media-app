@@ -106,7 +106,7 @@ export default {
                 axios.post('api/signup/', this.form)
                 .then(response => {
                     if (response.data.message === 'success') {
-                        this.toastStore.showToast(5000, 'The user is registered. Please log in', 'bg-emerald-500')
+                        this.toastStore.showToast(5000, 'The user is registered. Please activate your account, by clicking the activation mail sent to your email', 'bg-emerald-500')
 
                         this.form.email = ''
                         this.form.name = ''
@@ -115,6 +115,11 @@ export default {
                         
                     }
                     else {
+                        const data = JSON.parse(response.data.message)
+                        for (const key in data){
+                            console.log(key, data[key][0].message)
+                            this.errors.push(data[key][0].message)
+                        }
                         this.toastStore.showToast(5000, 'Something went wrong. Please try again', 'bg-red-300')
                     }
 

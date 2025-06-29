@@ -20,7 +20,7 @@
                 v-for="comment in post.comments"
                 v-bind:key="comment.id"
             >
-            
+             <!-- <CommentItem v-bind:comment="comment"/>   -->
                
             </div>
 
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+// import CommentItem from '../components/CommentItem.vue'
 import FeedItem from '../components/FeedItem.vue'
 import PeopleYouMayKnow from '../components/PeopleYouMayKnow.vue'
 import Trends from '../components/Trends.vue'
@@ -67,6 +68,7 @@ export default {
         PeopleYouMayKnow,
         Trends,
         FeedItem,
+        // CommentItem,
     },
 
     data() {
@@ -103,7 +105,7 @@ export default {
 
             axios
                 .post(`/api/posts/${this.$route.params.id}/comment/`, {
-                    'body': this.body
+                    body: this.body
                 })
                 .then( response => {
                     console.log('data:', response.data)
