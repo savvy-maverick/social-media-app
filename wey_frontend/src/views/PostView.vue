@@ -105,7 +105,7 @@ export default {
 
             axios
                 .post(`/api/posts/${this.$route.params.id}/comment/`, {
-                    body: this.body
+                    'body': this.body
                 })
                 .then( response => {
                     console.log('data:', response.data)
